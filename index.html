@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hiba Zouitina | Web Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            background: #0a0e27;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 14, 39, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 25px 80px;
+            z-index: 1000;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(0, 230, 255, 0.1);
+        }
+
+        nav .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        nav .logo {
+            font-size: 26px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: 1px;
+        }
+
+        nav .logo span {
+            background: linear-gradient(135deg, #00e6ff 0%, #0096ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 60px;
+            align-items: center;
+        }
+
+        nav a {
+            color: #00e6ff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 17px;
+            transition: all 0.3s ease;
+            padding: 8px 20px;
+            border-radius: 25px;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 20px;
+            width: 0;
+            height: 2px;
+            background: #00e6ff;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: calc(100% - 40px);
+        }
+
+        nav a:hover {
+            text-shadow: 0 0 20px rgba(0, 230, 255, 0.8);
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 150px 80px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+            gap: 60px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(0, 230, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-text {
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 64px;
+            font-weight: 800;
+            margin-bottom: 25px;
+            color: #ffffff;
+            line-height: 1.2;
+        }
+
+        .hero-text .highlight {
+            background: linear-gradient(135deg, #00e6ff 0%, #0096ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                filter: drop-shadow(0 0 20px rgba(0, 230, 255, 0.5));
+            }
+            to {
+                filter: drop-shadow(0 0 40px rgba(0, 230, 255, 0.8));
+            }
+        }
+
+        .hero-text p {
+            font-size: 22px;
+            color: #a8dadc;
+            margin-bottom: 40px;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            padding: 16px 45px;
+            background: linear-gradient(135deg, #00e6ff 0%, #0096ff 100%);
+            color: #0a0e27;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 17px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 230, 255, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 230, 255, 0.6);
+        }
+
+        .btn-secondary {
+            padding: 16px 45px;
+            background: transparent;
+            color: #00e6ff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 17px;
+            border: 2px solid #00e6ff;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 230, 255, 0.1);
+            box-shadow: 0 0 20px rgba(0, 230, 255, 0.3);
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-circle {
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(0, 230, 255, 0.2), rgba(0, 150, 255, 0.05));
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 150px;
+            box-shadow: 0 20px 60px rgba(0, 230, 255, 0.3);
+            border: 3px solid rgba(0, 230, 255, 0.3);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        section {
+            padding: 100px 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-white {
+            background: #ffffff;
+            color: #333333;
+            border-radius: 50px 50px 0 0;
+            margin-top: 50px;
+        }
+
+        h2 {
+            font-size: 52px;
+            text-align: center;
+            margin-bottom: 70px;
+            font-weight: 800;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-white h2 {
+            color: #00e6ff;
+        }
+
+        h2::before {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 5px;
+            background: linear-gradient(90deg, #00e6ff, #0096ff);
+            border-radius: 10px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-content p {
+            font-size: 19px;
+            line-height: 1.9;
+            color: #555555;
+            margin-bottom: 25px;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #00e6ff 0%, #0096ff 100%);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            color: #ffffff;
+            box-shadow: 0 10px 30px rgba(0, 230, 255, 0.3);
+        }
+
+        .stat-box h3 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .stat-box p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .skill-item {
+            background: linear-gradient(135deg, rgba(0, 230, 255, 0.05), rgba(0, 150, 255, 0.05));
+            padding: 45px 35px;
+            border-radius: 25px;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 2px solid rgba(0, 230, 255, 0.2);
+        }
+
+        .skill-item:hover {
+            transform: translateY(-15px);
+            background: linear-gradient(135deg, #00e6ff, #0096ff);
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 50px rgba(0, 230, 255, 0.5);
+        }
+
+        .skill-icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+
+        .skill-item h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #00e6ff;
+            font-weight: 700;
+        }
+
+        .skill-item:hover h3 {
+            color: #ffffff;
+        }
+
+        .skill-item p {
+            color: #666666;
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        .skill-item:hover p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 50px;
+        }
+
+        .project-item {
+            background: #ffffff;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+        }
+
+        .project-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 25px 60px rgba(0, 230, 255, 0.4);
+            border-color: rgba(0, 230, 255, 0.3);
+        }
+        .project-header {
+            height: 250px;
+            background: linear-gradient(135deg, #00e6ff 0%, #0096ff 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 100px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            animation: rotate 15s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .project-body {
+            padding: 35px;
+        }
+
+        .project-body h3 {
+            font-size: 26px;
+            color: #00e6ff;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .project-body p {
+            color: #666666;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            font-size: 16px;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .tag {
+            background: rgba(0, 230, 255, 0.1);
+            color: #00e6ff;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #00e6ff, #0096ff);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            transform: translateX(5px);
+            box-shadow: 0 10px 25px rgba(0, 230, 255, 0.4);
+        }
+
+        .contact-container {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(0, 230, 255, 0.05), rgba(0, 150, 255, 0.05));
+            padding: 80px 60px;
+            border-radius: 40px;
+            border: 2px solid rgba(0, 230, 255, 0.2);
+        }
+
+        .contact-container h2 {
+            color: #00e6ff;
+        }
+
+        .contact-container p {
+            font-size: 20px;
+            color: #666666;
+            margin-bottom: 50px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 35px;
+            flex-wrap: wrap;
+        }
+
+        .contact-card {
+            background: #ffffff;
+            padding: 35px 45px;
+            border-radius: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            min-width: 200px;
+            border: 2px solid transparent;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 230, 255, 0.4);
+            border-color: rgba(0, 230, 255, 0.3);
+        }
+        .githubicon{
+            width: 130px;
+            height: 100px;
+        }
+
+        .contact-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .contact-card h4 {
+            font-size: 20px;
+            color: #00e6ff;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .contact-card a {
+            color: #666666;
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .contact-card:hover a {
+            color: #00e6ff;
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px 20px;
+            background: rgba(10, 14, 39, 0.98);
+            border-top: 1px solid rgba(0, 230, 255, 0.2);
+            color: #a8dadc;
+            font-size: 16px;
+        }
+
+        @media (max-width: 1024px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 150px 40px 80px;
+            }
+
+            .hero-text h1 {
+                font-size: 48px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .projects-container {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 80px 40px;
+            }
+
+            nav {
+                padding: 25px 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 20px;
+            }
+
+            nav a {
+                font-size: 14px;
+                padding: 6px 15px;
+            }
+
+            nav .logo {
+                font-size: 20px;
+            }
+
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-circle {
+                width: 280px;
+                height: 280px;
+                font-size: 100px;
+            }
+
+            h2 {
+                font-size: 38px;
+            }
+
+            .contact-methods {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+    </head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Hiba <span>Zouitina</span></div>
+            <ul>
+                <li><a href="#home">Accueil</a></li>
+                <li><a href="#about">À propos</a></li>
+                <li><a href="#skills">Compétences</a></li>
+                <li><a href="#projects">Projets</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-text">
+            <h1>Bonjour, je suis <span class="highlight">Hiba Zouitina</span></h1>
+            <p>Une développeuse Full-Stack passionnée, spécialisée dans la création d’expériences numériques belles, fonctionnelles et centrées sur l’utilisateur. Construisons quelque chose d’incroyable ensemble.</p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn-primary">Voir les projets</a>
+                <a href="#contact" class="btn-secondary">Me contacter</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="profile-circle">👩‍💻</div>
+        </div>
+    </section>
+
+    <section id="about" class="section-white">
+        <h2>À propos de moi</h2>
+        <div class="about-grid">
+            <div class="about-content">
+                <p>Je suis une développeuse full-stack orientée résultats, avec une grande passion pour la création de solutions web innovantes. Mon parcours dans la technologie est guidé par la curiosité et l’excellence dans chaque projet que je réalise.</p>
+                <p>Grâce à une expertise couvrant des frameworks et technologies modernes, je me spécialise dans la transformation de défis complexes en applications élégantes et évolutives qui apportent une réelle valeur aux utilisateurs et aux entreprises.</p>
+                <p>Mon approche combine compétences techniques et créativité afin de garantir que chaque solution soit à la fois fonctionnelle, intuitive et engageante.</p>
+            </div>
+            <div class="about-stats">
+                <div class="stat-box">
+                    <h3>10+</h3>
+                    <p>Projets réalisés</p>
+                </div>
+                <div class="stat-box">
+                    <h3>5mois</h3>
+                    <p>periode d’expérience</p>
+                </div>
+                <div class="stat-box">
+                    <h3>100%</h3>
+                    <p>Taux de satisfaction</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section-white">
+        <h2>Ce que je fais</h2>
+        <div class="skills-container">
+            <div class="skill-item">
+                <div class="skill-icon">💻</div>
+                <h3>Développement Frontend</h3>
+                <p>html, Tailwind CSS, Material-UI</p>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">🗄️</div>
+                <h3>Gestion des bases de données</h3>
+                <p> MongoDB, Conception de bases de données</p>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">📱</div>
+                <h3>Développement Mobile</h3>
+                <p>React Native, Flutter, Progressive Web Apps, Design Mobile-First</p>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">🎨</div>
+                <h3>Design UI/UX</h3>
+                <p>Figma, Adobe XD, Recherche utilisateur, Prototypage, Design Systems</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="section-white">
+        <h2>Travaux réalisés</h2>
+        <div class="projects-container">
+            <div class="project-item">
+                <div class="project-header">🌟</div>
+                <div class="project-body">
+                    <h3>Voiture</h3>
+                    <p>Une interface moderne dédiée aux voitures, présentant les modèles, caractéristiques et options avec un design clair et responsive.</p>
+                    <div class="project-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                    </div>
+                    <a href="#" class="project-link">Voir l’étude de cas →</a>
+                </div>
+            </div>
+
+            <div class="project-item">
+                <div class="project-header">🎓</div>
+                <div class="project-body">
+                    <h3>Menu parfums</h3>
+                    <p>Un menu élégant de parfums mettant en valeur les catégories, descriptions et prix, avec une mise en page esthétique et fluide.</p>
+                    <div class="project-tags">
+                        <span class="tag">Vue.js</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">3D</span>
+                        <span class="tag">HTML</span>
+                    </div>
+                    <a href="#" class="project-link">Voir l’étude de cas →</a>
+                </div>
+            </div>
+
+            <div class="project-item">
+                <div class="project-header">🏪</div>
+                <div class="project-body">
+                    <h3>Formulaire</h3>
+                    <p>Un formulaire interactif permettant la saisie et la validation des informations utilisateur, conçu pour une expérience simple et efficace.</p>
+                    <div class="project-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">ANIMATION</span>
+                    </div>
+                    <a href="#" class="project-link">Voir l’étude de cas →</a>
+                </div>
+            </div>
+
+            <div class="project-item">
+                <div class="project-header">🚀</div>
+                <div class="project-body">
+                    <h3>Naturs</h3>
+                    <p>Un site vitrine dédié aux voyages et aventures en pleine nature, présentant des circuits, activités et offres touristiques avec un design moderne et immersif.</p>
+                    <div class="project-tags">
+                        <span class="tag">CSS</span>
+                        <span class="tag">ANIMATION</span>
+                        <span class="tag">HTML</span>
+                        <span class="tag">3D</span>
+                    </div>
+                    <a href="#" class="project-link">Voir l’étude de cas →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section-white">
+        <div class="contact-container">
+            <h2>Travaillons ensemble</h2>
+            <p>Je suis toujours enthousiaste à l’idée de collaborer sur de nouveaux projets et idées innovantes. Que vous ayez besoin d’une solution web complète ou que vous souhaitiez discuter de votre prochaine grande idée, je suis là pour vous aider.</p>
+            <div class="contact-methods">
+                <div class="contact-card">
+                    <div class="contact-icon"><img src="e-mail.png" class="githubicon"></div>
+                    <h4>Email</h4>
+                    <a href="mailto:hiba.chich2007@email.com">hiba.zouitina@email.com</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon"><img src="linkedin.png" class="githubicon"></div>
+                    <h4>LinkedIn</h4>
+                    <a href="#">Se connecter avec moi</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon"><img src="github.png" class="githubicon"></div>
+                    <h4>GitHub</h4>
+                    <a href="https://www.linkedin.com/in/hiba-zouitina-836bab282/" target="_blank">Voir mon code</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Hiba Zouitina. Conçu et développé avec passion ❤️</p>
+    </footer>
+
+</body>
+</html>
